@@ -1,6 +1,8 @@
 const express = require('express')
+const fetch = require('node-fetch')
 const app = express()
-const port = 3000
+
+var obj
 
 app.use(express.static('/src/assets'))
 app.use('/img', express.static(__dirname + '/src/assets/img'))
@@ -14,10 +16,16 @@ app.get('', (req, res) => {
     res.render('index')
 })
 app.get('/currency', (req, res) => {
-    res.render('menu/currency')
+    fetch("https://poe.ninja/api/data/currencyoverview?league=Harvest&type=Currency&language=en")
+        .then(response => response.json())
+        .then(data => obj = data)
+        .catch(error => console.log('error', error));
+    res.render('menu/currency', {currencyData : obj})
 })
+
 app.get('/fragment', (req, res) => {
     res.render('menu/fragment')
 })
 
-app.listen(port, () => console.info(`Listening on port ${port}`))
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.info(`Listening on port ${PORT}`))
