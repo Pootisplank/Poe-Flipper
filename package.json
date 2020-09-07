@@ -1,0 +1,28 @@
+{
+  "name": "pootisplank.github.io",
+  "version": "1.0.0",
+  "description": "Website for flipping poe items",
+  "main": "index.js",
+  
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pootisplank/Pootisplank.github.io.git"
+  },
+  "author": "Alex Lin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pootisplank/Pootisplank.github.io/issues"
+  },
+  "homepage": "https://github.com/Pootisplank/Pootisplank.github.io#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
