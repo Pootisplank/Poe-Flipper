@@ -1,2 +1,2 @@
 # PoeFlipper
-Github pages repo
+Website for PoE Flipping
