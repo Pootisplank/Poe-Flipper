@@ -45,18 +45,24 @@
                 <h2>A site for Path of Exile Profit Margins</h2>
             </div>
 
-            <div class=content>
-                <div class="grey_bg">
-                    <p>Currency</p>
-                    <p><%- JSON.stringify(currencyData) %></p>
-                </div>
-                
+            <div class="content">
+                <table class="pure-table">
+                    <thead>
+                        <th>Currency</th>
+                    </thead>
+                    <tbody>
+                        <% for(var item of data) { %>
+                            <tr>
+                                <td><%= item.currencyTypeName %> </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
-            
         </div>
 
     </div>
-    <script src="/src/API/script.js"></script>
+    <script src="js/script.js"></script>
     </body>
 
 

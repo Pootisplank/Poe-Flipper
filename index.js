@@ -2,11 +2,13 @@ const express = require('express')
 const fetch = require('node-fetch')
 const app = express()
 
-var obj
+var data
 
-app.use(express.static('/src/assets'))
-app.use('/img', express.static(__dirname + '/src/assets/img'))
-app.use('/styles', express.static(__dirname + '/src/assets/styles'))
+// Set static assets
+app.use(express.static('/public/assets'))
+app.use('/img', express.static(__dirname + '/public/assets/img'))
+app.use('/styles', express.static(__dirname + '/public/assets/styles'))
+app.use('/js', express.static(__dirname + '/public/assets/js'))
 
 // Set Views
 app.set('views', './views')
@@ -15,12 +17,22 @@ app.set('view engine', 'ejs')
 app.get('', (req, res) => {
     res.render('index')
 })
-app.get('/currency', (req, res) => {
-    fetch("https://poe.ninja/api/data/currencyoverview?league=Harvest&type=Currency&language=en")
-        .then(response => response.json())
-        .then(data => obj = data)
-        .catch(error => console.log('error', error));
-    res.render('menu/currency', {currencyData : obj})
+
+app.get('/currency', async (req, res) => {
+    console.log('/currency endpoint called')
+    const url = "https://poe.ninja/api/data/currencyoverview?league=Harvest&type=Currency&language=en";
+    const options = {
+        'method' : 'GET',
+    };
+
+    const data = await fetch(url, options)
+        .then(res => res.json())
+        .then(json => json.lines)
+        .catch(error => {
+            console.error("Error", error)
+        })
+
+    res.render('menu/currency', {data:data})
 })
 
 app.get('/fragment', (req, res) => {
