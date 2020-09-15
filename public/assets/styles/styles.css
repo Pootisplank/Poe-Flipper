@@ -37,18 +37,44 @@ This is the parent `<div>` that contains the menu and the content area.
     #layout.active .menu-link {
         left: 150px;
     }
+
 /*
 The content `<div>` is where all your content goes.
 */
 .content {
-    margin: 0 auto;
-    padding: 0 2em;
-    max-width: 800px;
-    margin-bottom: 50px;
+    margin: 0 0;
+    padding: 0 0;
+    max-width: 50em;
+    margin-bottom: 3.125em;
     line-height: 1.6em;
+    font-size: 16px;
 }
     .grey_bg {
-        background-color: #484C50
+        background-color: #484C50;
+    }
+    .separator {
+        opacity: 0.5; 
+        margin: 0em 0.25em
+    }
+    .currency-icon {
+        max-width: 1.7em;
+        max-height: 1.7em;
+        vertical-align: middle;
+    }
+    .pure-table {
+        width: 100%;
+        width: 62.5em;
+        margin-left: 15%;
+        margin-right: 15%;
+        padding: 0;
+        table-layout: fixed;
+    }
+        .pure-table td {
+            border: 1px solid #cbcbcb;
+            border-spacing: 0;
+        }
+    .text-right {
+        text-align: right;
     }
 
 
