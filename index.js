@@ -9,7 +9,7 @@ function kFormatter(num) {
 
 // Retrieves data from poe.ninja api
 async function getData(type) {
-    const url = `https://poe.ninja/api/data/currencyoverview?league=Standard&type=${type}&language=en`
+    const url = `https://poe.ninja/api/data/currencyoverview?league=Heist&type=${type}&language=en`
     const options = {
         'method' : 'GET',
     };
