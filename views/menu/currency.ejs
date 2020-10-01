@@ -36,52 +36,80 @@
             </div>
 
             <div class="content">
-                <table class="pure-table">
-                    <thead>
-                        <tr>
-                            <th>Currency</th>
-                            <th>Buy</th>
-                            <th>Sell</th>
-                            <th>Profit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(item of result) { %>
-                        <tr>
-                            <td> 
-                                <img class="currency-icon" src=<%= item.icon %>>
-                                <%= item.name %> 
-                            </td>
+                <div class="pure-g">
+                    <div class="pure-u table">
+                        <table class="pure-table">
+                            <thead>
+                                <tr>
+                                    <th>Currency</th>
+                                    <th>Buy</th>
+                                    <th>Sell</th>
+                                    <th>Profit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(item of currency) { %>
+                                <tr>
+                                    <td> 
+                                        <img class="currency-icon" src=<%= item.icon %>>
+                                        <%= item.name %> 
+                                    </td>
+        
+                                    <td class="text-right <%=item.buyCount < 10 ? 'medium-confidence' : ''%>"> 
 
-                            <td class="text-right"> 
-                                <%= item.buyChaos %>
-                                <span class="separator">×</span>
-                                <img class="currency-icon" src=<%= item.chaosIcon %>>  
-                                <span class="separator">=</span>
-                                <%= item.buyItem %>
-                                <span class="separator">×</span>
-                                <img class="currency-icon" src=<%= item.icon %>>
-                            </td>
-
-                            <td class="text-right">
-                                <% if (item.sellChaos == null) { %>
-                                    Not Enough Data
-                                <% } else { %>
-                                    <%= item.sellItem %>
-                                    <span class="separator">×</span>
-                                    <img class="currency-icon" src=<%= item.icon %>>  
-                                    <span class="separator">=</span>
-                                    <%= item.sellChaos %>
-                                    <span class="separator">×</span>
-                                    <img class="currency-icon" src=<%= item.chaosIcon %>>
+                                        <% if (item.buyChaos == null || item.buyCount < 6) { %>
+                                            <span class="no_data">Not Enough Data</span>
+                                        <% } else { %>
+                                            <%= item.buyChaos %>
+                                            <span class="separator">×</span>
+                                            <img class="currency-icon" src=<%= item.chaosIcon %>>  
+                                            <span class="separator">=</span>
+                                            <%= item.buyItem %>
+                                            <span class="separator">×</span>
+                                            <img class="currency-icon" src=<%= item.icon %>>
+                                        <% } %>
+                                    </td>
+        
+                                    <td class="text-right <%=item.sellCount < 10 ? 'medium-confidence' : ''%>">
+                                        <% if (item.sellChaos == null || item.sellCount < 6) { %>
+                                            <span class="no_data">Not Enough Data</span>
+                                        <% } else { %>
+                                            <%= item.sellItem %>
+                                            <span class="separator">×</span>
+                                            <img class="currency-icon" src=<%= item.icon %>>  
+                                            <span class="separator">=</span>
+                                            <%= item.sellChaos %>
+                                            <span class="separator">×</span>
+                                            <img class="currency-icon" src=<%= item.chaosIcon %>>
+                                        <% } %>
+        
+                                         
+                                    </td>
+                                </tr>
                                 <% } %>
+                            </tbody>
+                        </table>
+                    </div>
 
-                                 
-                            </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
+                    <div class="pure-u form pure-form-stacked">
+                        <form class="pure-form">
+                            <fieldset>
+                                <legend style=>Custom Profit Calculator</legend>
+                            </fieldset>
+                            <label for="stacked-state">Currency</label>
+                            <select id="item">
+                                <% for(item of currency) { %>
+                                    <option><%= item.name %> </option>
+                                <% } %>
+                            </select>
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" placeholder="# of item to buy and sell" />
+                            <label for="stacked-password">Password</label>
+                            <input type="password" id="stacked-password" placeholder="Password" />
+                        </form>
+                    </div>
+                </div>
+                
             </div>
         </div>
 

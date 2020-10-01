@@ -32,20 +32,61 @@
 
         <div id="main">
             <div class = "header">
-                <h1>Welcome to PoE Flipper!</h1>
-                <h2>A site for Path of Exile Profit Margins</h2>
+                <h1 style="margin-bottom:1em;">Fragment Flipping</h1>
             </div>
 
-            <div class=content>
-                <div class="grey_bg">
-                    <p>Fragment</p>
-                </div>
-                
+            <div class="content">
+                <table class="pure-table">
+                    <thead>
+                        <tr>
+                            <th>Currency</th>
+                            <th>Buy</th>
+                            <th>Sell</th>
+                            <th>Profit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(item of fragment) { %>
+                        <tr>
+                            <td> 
+                                <img class="currency-icon" src=<%= item.icon %>>
+                                <%= item.name %> 
+                            </td>
+
+                            <td class="text-right"> 
+                                <%= item.buyChaos %>
+                                <span class="separator">×</span>
+                                <img class="currency-icon" src=<%= item.chaosIcon %>>  
+                                <span class="separator">=</span>
+                                <%= item.buyItem %>
+                                <span class="separator">×</span>
+                                <img class="currency-icon" src=<%= item.icon %>>
+                            </td>
+
+                            <td class="text-right">
+                                <% if (item.sellChaos == null) { %>
+                                    Not Enough Data
+                                <% } else { %>
+                                    <%= item.sellItem %>
+                                    <span class="separator">×</span>
+                                    <img class="currency-icon" src=<%= item.icon %>>  
+                                    <span class="separator">=</span>
+                                    <%= item.sellChaos %>
+                                    <span class="separator">×</span>
+                                    <img class="currency-icon" src=<%= item.chaosIcon %>>
+                                <% } %>
+
+                                 
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
-            
         </div>
 
     </div>
+    <script src="js/script.js"></script>
     </body>
 
 

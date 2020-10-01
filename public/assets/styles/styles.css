@@ -44,7 +44,6 @@ The content `<div>` is where all your content goes.
 .content {
     margin: 0 0;
     padding: 0 0;
-    max-width: 50em;
     margin-bottom: 3.125em;
     line-height: 1.6em;
     font-size: 16px;
@@ -56,22 +55,50 @@ The content `<div>` is where all your content goes.
         opacity: 0.5; 
         margin: 0em 0.25em
     }
+    .no_data {
+        opacity: 0.4; 
+        color: #fff;
+    }
     .currency-icon {
         max-width: 1.7em;
         max-height: 1.7em;
         vertical-align: middle;
     }
+    .pure-u.table {
+        width: 65em;
+        margin-left: 2em;
+        margin-right: 2em;
+        border: grey;
+    }
+    .pure-u.form {
+        width: 15em;
+        padding: 0;
+        margin-right: 2em; 
+        margin-left: 2em; 
+    }
+        .pure-form legend {
+            display: block;
+            width: 100%;
+            padding: .3em 0;
+            margin-bottom: .3em;
+            border-bottom: 1px solid #e5e5e5;
+            color: #fff;
+        }
     .pure-table {
-        width: 100%;
-        width: 62.5em;
-        margin-left: 15%;
-        margin-right: 15%;
+        width: 65em;
         padding: 0;
         table-layout: fixed;
     }
         .pure-table td {
             border: 1px solid #cbcbcb;
             border-spacing: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+    
+        }
+        .medium-confidence {
+            color:gold
         }
     .text-right {
         text-align: right;
