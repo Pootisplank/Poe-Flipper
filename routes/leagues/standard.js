@@ -1,15 +1,30 @@
 const express = require('express')
+const router = express.Router()
 const fetch = require('node-fetch')
-const app = express()
 
 
 function kFormatter(num) {
     return num > 999 ? ((num/1000).toFixed(1)) + 'k' : num
 }
 
+async function getLeague() {
+    const url = "http://api.pathofexile.com/leagues"
+    const options = {
+        'method' : 'GET',
+    };
+    const data = await fetch(url, options)
+        .then(res => res.json())
+        .catch(error => {
+            console.error("Error", error)
+        })
+
+    return data[0].id
+}
+
 // Retrieves data from poe.ninja api
 async function getData(type) {
-    const url = `https://poe.ninja/api/data/currencyoverview?league=Heist&type=${type}&language=en`
+    const league = await getLeague()
+    const url = `https://poe.ninja/api/data/currencyoverview?league=${league}&type=${type}&language=en`
     const options = {
         'method' : 'GET',
     };
@@ -20,7 +35,6 @@ async function getData(type) {
         })
     return data
 }
-
 
 function processData(data) {
     const results = []
@@ -99,36 +113,26 @@ function processData(data) {
     return results
 }
 
-
-// Set static assets
-app.use(express.static('/public/assets'))
-app.use('/img', express.static(__dirname + '/public/assets/img'))
-app.use('/styles', express.static(__dirname + '/public/assets/styles'))
-app.use('/js', express.static(__dirname + '/public/assets/js'))
-
-// Set Views
-app.set('views', './views')
-app.set('view engine', 'ejs')
-
-app.get('', (req, res) => {
-    res.render('index')
-})
-
-app.get('/currency', async (req, res) => {
-    console.log('/currency endpoint called')
+router.get('/', async (req, res) => {
+    console.log('/standard endpoint called')
     const dataCurrency = await getData('Currency')
     const currency = processData(dataCurrency)
-    //console.log(result)
-    res.render('menu/currency', {currency:currency})
+    res.render('leagues/standard/currency', {currency:currency})
 })
 
-app.get('/fragment', async (req, res) => {
-    console.log('/fragment endpoint called')
+router.get('/currency', async (req, res) => {
+    console.log('/standard/currency endpoint called')
+    const dataCurrency = await getData('Currency')
+    const currency = processData(dataCurrency)
+    res.render('leagues/standard/currency', {currency:currency})
+})
+
+router.get('/fragment', async (req, res) => {
+    console.log('/standard/fragment endpoint called')
     const dataFragment = await getData('Fragment')
     const fragment = processData(dataFragment)
-    //console.log(result)
-    res.render('menu/fragment', {fragment:fragment})
+    res.render('leagues/standard/fragment', {fragment:fragment})
 })
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.info(`Listening on port ${PORT}`))
+
+module.exports = router
