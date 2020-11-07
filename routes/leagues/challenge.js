@@ -195,7 +195,6 @@ router.get('/currency', async (req, res) => {
     console.log('/challenge/currency endpoint called')
     const dataCurrency = await getData('Currency')
     const currency = await processData(dataCurrency)
-    console.log(currency)
     res.render('leagues/challenge/currency', {currency:currency})
 })
 
