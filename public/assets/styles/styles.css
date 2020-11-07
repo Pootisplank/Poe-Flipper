@@ -53,8 +53,16 @@ The content `<div>` is where all your content goes.
     line-height: 1.6em;
     font-size: 16px;
 }
+    .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 24px;
+        text-shadow: 1px 1px #000;
+    }
     .grey_bg {
         background-color: #484C50;
+        box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.25);
+        line-height: 2em;
     }
     .separator {
         opacity: 0.5; 
@@ -123,9 +131,11 @@ The content `<div>` is where all your content goes.
      padding: 2.5em 2em 0;
  }
     .header h1 {
-        margin: 0em 0.2em 1em 0.2em;
+        margin: 0em 0.2em 0.4em 0.2em;
         font-size: 3em;
         font-weight: 300;
+        text-transform: uppercase;
+        font-weight: bold;
     }
     .header h2 {
         font-weight: 300;
@@ -134,7 +144,6 @@ The content `<div>` is where all your content goes.
         margin-top: 0;
         margin-bottom: 2em
     }
-
 
 .content-subhead {
     margin: 50px 0 20px 0;

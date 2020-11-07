@@ -12,7 +12,7 @@
 
     <div id="main">
         <div class = "header">
-            <h1>Currency Flipping</h1>
+            <h1>Currency</h1>
         </div>
 
         <div class="content">
@@ -47,7 +47,9 @@
                                         <%= item.buyItem %>
                                         <span class="separator">×</span>
                                         <img class="currency-icon" src=<%= item.icon %>>
-                                        <i class="fas fa-search fa-border search-icon"></i>
+                                        <a href=<%= item.buyLink %> >
+                                            <i class="fas fa-search fa-border search-icon"></i>
+                                        </a>
                                     <% } %>
                                 </td>
     
@@ -62,7 +64,28 @@
                                         <%= item.sellChaos %>
                                         <span class="separator">×</span>
                                         <img class="currency-icon" src=<%= item.chaosIcon %>>
-                                        <i class="fas fa-search fa-border search-icon"></i>
+                                        <a href=<%= item.sellLink %> >
+                                            <i class="fas fa-search fa-border search-icon"></i>
+                                        </a>
+                                    <% } %>
+                                </td>
+
+                                <td class="text-right <%=(item.buyCount < 10 || item.sellCount < 10) ? 'medium-confidence' : ''%>"> 
+                                    <% if (item.buyChaos == null || item.buyCount < 6 || item.sellChaos == null || item.sellCount < 6) { %>
+                                        <span class="no_data">Not Enough Data</span>
+                                    <% } else { %>
+                                        
+                                        <%= item.profit %>
+                                        <span class="separator">×</span>
+                                        <% if (item.buyChaos == 1) { %>
+                                            <img class="currency-icon" src=<%= item.icon %>>
+                                            <span class="separator">/</span>
+                                            <img class="currency-icon" src=<%= item.chaosIcon %>>  
+                                        <% } else { %>
+                                            <img class="currency-icon" src=<%= item.chaosIcon %>>  
+                                            <span class="separator">/</span>
+                                            <img class="currency-icon" src=<%= item.icon %>>
+                                        <% } %>
                                     <% } %>
                                 </td>
                             </tr>
@@ -70,7 +93,6 @@
                         </tbody>
                     </table>
                 </div>
-
 
                 <div class="pure-u form pure-form-stacked">
                     <form class="pure-form">

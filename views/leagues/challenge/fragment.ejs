@@ -11,7 +11,7 @@
 
     <div id="main">
         <div class = "header">
-            <h1 style="margin-bottom:1em;">Fragment Flipping</h1>
+            <h1 style="margin-bottom:1em;">Fragments</h1>
         </div>
 
         <div class="content">
@@ -26,39 +26,48 @@
                 </thead>
                 <tbody>
                     <% for(item of fragment) { %>
-                    <tr>
-                        <td> 
-                            <img class="currency-icon" src=<%= item.icon %>>
-                            <%= item.name %> 
-                        </td>
+                        <tr>
+                            <td> 
+                                <img class="currency-icon" src=<%= item.icon %>>
+                                <%= item.name %> 
+                            </td>
 
-                        <td class="text-right"> 
-                            <%= item.buyChaos %>
-                            <span class="separator">×</span>
-                            <img class="currency-icon" src=<%= item.chaosIcon %>>  
-                            <span class="separator">=</span>
-                            <%= item.buyItem %>
-                            <span class="separator">×</span>
-                            <img class="currency-icon" src=<%= item.icon %>>
-                        </td>
+                            <td class="text-right <%=item.buyCount < 10 ? 'medium-confidence' : ''%>"> 
 
-                        <td class="text-right">
-                            <% if (item.sellChaos == null) { %>
-                                Not Enough Data
-                            <% } else { %>
-                                <%= item.sellItem %>
-                                <span class="separator">×</span>
-                                <img class="currency-icon" src=<%= item.icon %>>  
-                                <span class="separator">=</span>
-                                <%= item.sellChaos %>
-                                <span class="separator">×</span>
-                                <img class="currency-icon" src=<%= item.chaosIcon %>>
-                            <% } %>
+                                <% if (item.buyChaos == null || item.buyCount < 6) { %>
+                                    <span class="no_data">Not Enough Data</span>
+                                <% } else { %>
+                                    <%= item.buyChaos %>
+                                    <span class="separator">×</span>
+                                    <img class="currency-icon" src=<%= item.chaosIcon %>>  
+                                    <span class="separator">=</span>
+                                    <%= item.buyItem %>
+                                    <span class="separator">×</span>
+                                    <img class="currency-icon" src=<%= item.icon %>>
+                                    <a href=<%= item.buyLink %> >
+                                        <i class="fas fa-search fa-border search-icon"></i>
+                                    </a>
+                                <% } %>
+                            </td>
 
-                                
-                        </td>
-                    </tr>
-                    <% } %>
+                            <td class="text-right <%=item.sellCount < 10 ? 'medium-confidence' : ''%>">
+                                <% if (item.sellChaos == null || item.sellCount < 6) { %>
+                                    <span class="no_data">Not Enough Data</span>
+                                <% } else { %>
+                                    <%= item.sellItem %>
+                                    <span class="separator">×</span>
+                                    <img class="currency-icon" src=<%= item.icon %>>  
+                                    <span class="separator">=</span>
+                                    <%= item.sellChaos %>
+                                    <span class="separator">×</span>
+                                    <img class="currency-icon" src=<%= item.chaosIcon %>>
+                                    <a href=<%= item.sellLink %> >
+                                        <i class="fas fa-search fa-border search-icon"></i>
+                                    </a>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <% } %>
                 </tbody>
             </table>
         </div>
